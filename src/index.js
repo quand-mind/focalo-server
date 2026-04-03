@@ -1,6 +1,9 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import passport from 'passport';
 import connectDB from './config/db.js';
+import './config/passport.js'; // initialize passport config
+import authRoutes from './routes/auth.routes.js';
 import userRoutes from './routes/user.routes.js';
 import profileRoutes from './routes/profile.routes.js';
 import payInfoRoutes from './routes/payInfo.routes.js';
@@ -20,7 +23,11 @@ const app = express();
 // Middleware to parse JSON
 app.use(express.json());
 
+// Initialize Passport middleware
+app.use(passport.initialize());
+
 // Main API Routes
+app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/profiles', profileRoutes);
 app.use('/api/pay-info', payInfoRoutes);

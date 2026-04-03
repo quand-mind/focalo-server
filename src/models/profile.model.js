@@ -5,12 +5,6 @@ import mongoose from 'mongoose';
  * Owned by a user, connects to configurations and pay information.
  */
 const profileSchema = new mongoose.Schema({
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true,
-    index: true, // index for fetching profiles by user
-  },
   name: {
     type: String,
     required: [true, 'Profile name is required'],

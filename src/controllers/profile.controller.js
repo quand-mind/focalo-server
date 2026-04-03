@@ -20,7 +20,7 @@ export const getProfiles = async (req, res) => {
 
 export const getProfileById = async (req, res) => {
   try {
-    const doc = await Profile.findById(req.params.id).populate('user').populate('payInfo').populate('profileConfig');
+    const doc = await Profile.findById(req.params.id).populate('payInfo').populate('profileConfig');
     if (!doc) return res.status(404).json({ error: 'Profile not found' });
     res.status(200).json(doc);
   } catch (error) {

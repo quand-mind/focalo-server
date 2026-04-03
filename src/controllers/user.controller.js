@@ -20,7 +20,7 @@ export const getUsers = async (req, res) => {
 
 export const getUserById = async (req, res) => {
   try {
-    const doc = await User.findById(req.params.id).populate('profile');
+    const doc = await User.findById(req.params.id).populate('profile').populate('payInfo');
     if (!doc) return res.status(404).json({ error: 'User not found' });
     res.status(200).json(doc);
   } catch (error) {
